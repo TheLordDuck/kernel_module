@@ -1,5 +1,7 @@
+/* Example pending to complete
+
 /*
- * /proc example module
+ * program to monitor write syscall interactions
  */
 
 #include <linux/module.h>
@@ -16,9 +18,7 @@ MODULE_DESCRIPTION ("/proc write");
 
 #define PROC_ENTRY "write"	/* File name */
 
-pid_t pid = 0;
 
-/* Read: Shows information about process "pid" */
 /* Information is written using seq_printf function */
 static int
 read_proc (struct seq_file *m, void *p)
@@ -32,8 +32,7 @@ ssize_t
 write_proc (struct file * f, const char __user * buff, size_t len, loff_t * o)
 {
   return printk (KERN_INFO "WRITE function called, buffer %s\n", buff);
-
-  return len;
+  #return len;
 }
 
 static int
