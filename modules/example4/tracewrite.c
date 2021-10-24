@@ -32,7 +32,7 @@ ssize_t
 write_proc (struct file * f, const char __user * buff, size_t len, loff_t * o)
 {
   return printk (KERN_INFO "WRITE function called, buffer %s\n", buff);
-  #return len;
+  /*return len;
 }
 
 static int
