@@ -1,0 +1,1 @@
+cmd_/home/flavio/Desktop/SistemesOperatius/modules/example1/hw.ko := ld -r -m elf_i386 -T ./scripts/module-common.lds  --build-id  -o /home/flavio/Desktop/SistemesOperatius/modules/example1/hw.ko /home/flavio/Desktop/SistemesOperatius/modules/example1/hw.o /home/flavio/Desktop/SistemesOperatius/modules/example1/hw.mod.o ;  true

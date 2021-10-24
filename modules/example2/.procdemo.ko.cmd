@@ -1,0 +1,1 @@
+cmd_/home/flavio/Desktop/SistemesOperatius/modules/example2/procdemo.ko := ld -r -m elf_i386 -T ./scripts/module-common.lds  --build-id  -o /home/flavio/Desktop/SistemesOperatius/modules/example2/procdemo.ko /home/flavio/Desktop/SistemesOperatius/modules/example2/procdemo.o /home/flavio/Desktop/SistemesOperatius/modules/example2/procdemo.mod.o ;  true
