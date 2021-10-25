@@ -1,4 +1,4 @@
-/* Example pending to complete
+/* Example pending to complete Actual copy of traceopen.c
 */
 
 /*
