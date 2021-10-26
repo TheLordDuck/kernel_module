@@ -3,6 +3,11 @@
 Multiple exercices to learn kernel module
 
 # Setup environment
+## Download image
+```bash
+wget http://einfmlinux1.uoc.edu/aso/image.img
+```
+
 ## Download kernel
 ```bash
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.206.tar.xz
@@ -11,6 +16,7 @@ wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.206.tar.xz
 ## Decompile the file with the kernel code
 ```bash
 tar -xJf linux-4.19.206.tar.xz
+rm -f linux-4.19.206.tar.xz
 ```
 
 ## Install flex & bison
@@ -20,8 +26,8 @@ sudo apt-get install flex bison
 ## Compile the kernel
 ```bash
 cd linux-4.19.206
-cp ../.config .
-make
+cp ../kernel.config .config
+make -j4
 cd ..
 ```
 
