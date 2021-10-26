@@ -1,6 +1,5 @@
-
 ifneq ($(KERNELRELEASE),)
-	obj-m := hw.o 
+	obj-m := hw.o
 else
 	include ../Makefile
 	KERNELDIR := ../../$(KERNEL_VERSION)
