@@ -1,0 +1,10 @@
+/linux-4.19.206
+/image.img
+
+*.cmd
+*.ko
+*.o
+*.mod.c
+*.symvers
+*.order
+*.tmp_versions
