@@ -11,6 +11,11 @@
 #include <linux/pid.h>
 #include <linux/sched.h>
 
+#include <linux/uaccess.h>
+#include <linux/seq_file.h>
+#include <linux/mm.h>
+#include <linux/proc_fs.h>
+
 #include "newsyscall2.h"
 
 MODULE_LICENSE ("GPL");
@@ -23,9 +28,52 @@ extern unsigned sys_call_table[];
 asmlinkage long
 sys_newsyscall (int pid, int type)
 {
+  //tractament dels casos trivials
 
+  // type = 0 --> calcular NUM_CHILDREN
+  // type = 1 --> calcular NUM_SIBLINGS
+  // type != 0 o 1 --> retornar error, tipus d'operació no correcte
+  // si el tipus de operació no es correcte, codi error -EINVAL
+  if((type != 0) || (type != 1)){
+    return -EINVAL;
+  }
 
+  //si el pid no esta definit
+  if(!pid){
+    return -ESRCH;
+  }
 
+  //busco si existeix el pid que s'ha pasat com a parametre
+  struct task_struct *task = NULL;
+  task = pid_task(find_vpid(pid), PIDTYPE_PID);
+
+  // si el process que s'especifica no existeis, codi error -ESRCH
+  if(!task){
+    return -ESRCH;
+  }
+
+  // contadors per a guardar els valors de children i siblings
+  // i que aun un process no tingui no childrens ni sibligns que retorni 0 
+  // com a cas trivial que demanes, per aixo els inicio a 0
+  int numero_childrens = 0;
+  int numero_siblings = 0;
+
+  // crear structura de llista per a iterar sobre els posibles children i siblings de la task
+  struct list_head *list;
+
+  if(type == 0){
+    //si type = 0; calcular NUM_CHILDREN
+    list_for_each(list, &(task->children)){
+      ++numero_childrens;
+    }
+    return numero_childrens;
+  } else if (type == 1){
+    //si type = 1; calcular NUM_SIBLINGS
+    list_for_each(list, &(task->siblings)){
+      ++numero_siblings;
+    }
+    return numero_siblings;
+  }
 }
 
 #define GPF_DISABLE write_cr0(read_cr0() & (~ 0x10000)) /* Disable RO protection */
