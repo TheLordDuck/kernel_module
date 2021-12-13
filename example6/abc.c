@@ -122,12 +122,12 @@ do_llseek (struct file *file, loff_t offset, int orig)
 }
 
 struct file_operations abc_op = {
-open:do_open,
-read:do_read,
-write:do_write,
-release:do_release,            /* close system call */
-unlocked_ioctl:do_ioctl,
-llseek:do_llseek
+  open:do_open,
+  read:do_read,
+  write:do_write,
+  release:do_release,            /* close system call */
+  unlocked_ioctl:do_ioctl,
+  llseek:do_llseek
 };
 
 static int __init

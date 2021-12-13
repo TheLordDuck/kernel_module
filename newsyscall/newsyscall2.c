@@ -64,13 +64,13 @@ sys_newsyscall (int pid, int type)
   if(type == NUM_CHILDREN){
     //si type = 0; calcular NUM_CHILDREN
     list_for_each(list, &(task->children)){
-      ++numero_childrens;
+      numero_childrens++;
     }
     return numero_childrens;
   } else if (type == NUM_SIBLINGS){
     //si type = 1; calcular NUM_SIBLINGS
     list_for_each(list, &(task->siblings)){
-      ++numero_siblings;
+      numero_siblings++;
     }
     return numero_siblings;
   }
